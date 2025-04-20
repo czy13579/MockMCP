@@ -1,42 +1,3 @@
-## 作用
-快速将使用mcp、fastmcp实现的mcp_server转化为agent可调用的工具，无需docker等配置。
-
-
-## 使用方法
-1.安装mockmcp
-```bash
-git clone https://github.com/czy13579/MockMCP.git
-pip install dist\mockmcp-0.1.0-py3-none-any.whl
-```
-
-2.将mcp_server转化为一个可以直接调用的类
-```python
-## 转化fastmcp
-
-# server代码
-from fastmcp import FastMCP
-mcp = FastMCP("Echo Server")
-@mcp.tool()
-def echo(text: str) -> str:
-    """Echo the input text"""
-    return text
-
-# 进行转化
-async def main():
-    from mockmcp import map_fastmcp_to_mock
-    mock_mcp=await map_fastmcp_to_mock(mcp)
-    results=await mock_mcp.call_tool("echo",{"text":"1"})
-    print(results)
-
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
-```
-
-```python
-## 转化mcp.Server
-
-
 # server代码
 from mcp.server.lowlevel.server import Server
 import mcp.types as types
@@ -86,5 +47,3 @@ async def main():
 if __name__ == "__main__":
     import asyncio
     asyncio.run(main())
-```
-

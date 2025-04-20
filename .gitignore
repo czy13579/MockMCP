@@ -1,1 +1,6 @@
 github/
+__pycache__/
+.specstory/
+.env
+
+

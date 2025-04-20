@@ -1,8 +1,10 @@
 import sys
 import pathlib
-sys.path.append(str(pathlib.Path(__file__).parent.parent))
-from mockmcp import map_fastmcp_to_mock
 
+import mockmcp
+
+from mockmcp import map_fastmcp_to_mock
+sys.path.append(str(pathlib.Path(__file__).parent.parent))
 async def test_mock_fastmcp1():
     from tests.exist_mcp.fastmcp1 import create_echo_server
     fastmcp1=create_echo_server()
